@@ -21,9 +21,9 @@ class NeuralNetwork:
 
     def softmax(self, x):
 #         Compute the softmax of vector x
-#         return np.exp(x) / np.sum(np.exp(x), axis = 1).reshape((-1,1))
-        e = np.exp(x - np.max(x))
-        return e / np.sum(e, axis = 1).reshape((-1,1))
+        return np.exp(x) / np.sum(np.exp(x), axis = 1).reshape((-1,1))
+        # e = np.exp(x - np.max(x))
+        # return e / np.sum(e, axis = 1).reshape((-1,1))
 
     def softmax_der(self, x):
         y = self.softmax_generalized(x)
