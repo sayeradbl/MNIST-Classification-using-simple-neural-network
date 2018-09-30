@@ -42,24 +42,24 @@ if __name__ == "__main__":
     y_test = one_hot_encode(Y_test)
 
 
-    #Create and train the model
+     #Create and train the model
     topology = [x_train[0].shape[0], 100, 30, 10]
     NN = NeuralNetwork(topology, learning_rate=0.01, momentum=0.8, batch_size= 100, epochs = 20)
     print("Training Network...")
     train_costs = NN.train(x_train, y_train)
     print("Training costs: {}".format(train_costs))
-    plt.plot(train_costs)
-    plt.title("Train costs")
-    plt.show()
 
-    print("Making predictions...")
+    print("\nMaking predictions...\n")
     predict = NN.predict(x_test)
-    test_costs = NN.cross_entropy(y_test, predict)
-    plt.plot(test_costs)
-    plt.title("Test costs")
-    plt.show()
-
     predicted_labels = np.argmax(predict, axis=1)
-    print(predicted_labels[:10])
+
     test_accuracy = calculate_accuracy(Y_test, predicted_labels)
     print("Test Accuracy: {}%".format(test_accuracy*100))
+
+    plt.plot(train_costs)
+    plt.xlabel("Epochs")
+    plt.ylabel("Costs (NLL)")
+    plt.title("Training costs")
+    plt.show()
+
+    
